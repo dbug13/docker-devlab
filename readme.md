@@ -2,10 +2,10 @@
 
 ## Overview
 
-This repo contains a set of base docker images intended to be used to build a devlopment environments off of.
+This repo contains a set of base docker images intended to be used to build devlopment environments off of.
 Each base image defines a user `devlab` that has their own default home directory under `/home/devlab/` and 
 is setup to have sudo access without needing a password, this allows the `devlab` user to perform any needed
-tasks that would normaly require root access using the `sudo` command.
+tasks that would normaly require root access by using the `sudo` command.
 
 ## Usage
 

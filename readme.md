@@ -7,6 +7,23 @@ Each base image defines a user `devlab` that has their own default home director
 is setup to have sudo access without needing a password, this allows the `devlab` user to perform any needed
 tasks that would normaly require root access by using the `sudo` command.
 
+The goal of the `devlab` images are to install the bare minimum to setup a user with sudo access to their
+respective container environments which can be used as a base to build more specialized development environments
+from.
+
+For example, to build a container that has nodejs and npm from the `devlab-arch` container you could use
+the following docker file:
+
+```docker
+FROM devlab-arch
+
+ENV TZ="America/Los_Angeles"
+
+RUN pacman -Syu --noconfirm && pacman --noconfirm -S nodejs npm
+
+RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime.
+```
+
 ## Usage
 
 To build the images navigate to the directory that the repository was cloned to and run the `docker build` command

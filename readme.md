@@ -11,7 +11,7 @@ The goal of the `devlab` images are to install the bare minimum to setup a user 
 respective container environments which can be used as a base to build more specialized development environments
 from.
 
-For example, to build a container that has nodejs and npm from the `devlab-arch` container you could use
+For example, to build a container that has `nodejs` and `npm` from the `devlab-arch` container you could use
 the following docker file:
 
 ```docker

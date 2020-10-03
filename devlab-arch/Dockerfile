@@ -8,7 +8,12 @@ ENV CONTAINER_COUNTRY="United States"
 
 RUN reflector --country "${CONTAINER_COUNTRY}" --latest 15 --sort rate --save /etc/pacman.d/mirrorlist
 
-RUN groupadd -g 1000 devlab &&\
-    useradd -m -s /bin/bash -g devlab -u 1000 devlab &&\
-    echo "devlab ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/devlab &&\
-    chmod 600 /etc/sudoers.d/devlab
+ENV CONTAINER_USER="devlab"
+ENV CONTAINER_GROUP="devlab"
+ENV CONTAINER_UID=1000
+ENV CONTAINER_GID=1000
+
+RUN groupadd -g ${CONTAINER_GID} ${CONTAINER_GROUP} &&\
+    useradd -m -s /bin/bash -g ${CONTAINER_GROUP} -u ${CONTAINER_UID} ${CONTAINER_USER} &&\
+    echo "${CONTAINER_USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${CONTAINER_USER} &&\
+    chmod 600 /etc/sudoers.d/${CONTAINER_USER}

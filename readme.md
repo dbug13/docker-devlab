@@ -17,9 +17,9 @@ the following docker file:
 ```docker
 FROM devlab-arch
 
-ENV TZ="America/Los_Angeles"
-
 RUN pacman -Syu --noconfirm && pacman --noconfirm -S nodejs npm
+
+ENV TZ="America/Los_Angeles"
 
 RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime.
 ```

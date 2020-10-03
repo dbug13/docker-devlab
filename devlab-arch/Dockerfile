@@ -1,8 +1,12 @@
 FROM archlinux
 
+ENV CONTAINER_COUNTRY="United States"
+
 RUN pacman -Syu --noconfirm &&\
-    pacman -S --noconfirm sudo &&\
+    pacman -S --noconfirm sudo reflector &&\
     pacman -Scc --noconfirm
+
+RUN reflector --country "${CONTAINER_COUNTRY}" --latest 15 --sort rate --save /etc/pacman.d/mirrorlist
 
 RUN groupadd -g 1000 devlab &&\
     useradd -m -s /bin/bash -g devlab -u 1000 devlab &&\

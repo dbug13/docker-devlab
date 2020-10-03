@@ -2,4 +2,22 @@
 
 ## Overview
 
-This is a repo of docker containers that I use as development environments running inside docker containers.
+This repo contains a set of base docker images intended to be used to build a devlopment environments off of.
+Each base image defines a user `devlab` that has their own default home directory under `/home/devlab/` and 
+is setup to have sudo access without needing a password, this allows the `devlab` user to perform any needed
+tasks that would normaly require root access using the `sudo` command.
+
+## Usage
+
+To build the images navigate to the directory that the repository was cloned to and run the `docker build` command
+
+```bash
+# Example for building the devlab-arch image located in the devlab-arch/ directory.
+docker build --rm -t devlab-arch devlab-arch/
+```
+
+To run the image as the devlab user and open a bash prompt use the following command:
+
+```bash
+docker run --rm -it --user devlab -w /home/devlab --hostname devlab-arch --name devlab-arch devlab-arch bash
+```
